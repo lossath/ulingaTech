@@ -1,0 +1,539 @@
+/* Importação da fonte do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Reset básico e variáveis */
+:root {
+    --primary-color-service: #2c3e50;
+    --secondary-color-service: #3498db;
+    --background-color-service: #f4f4f4;
+    --card-background-service: #ffffff;
+    --text-color-service: #333;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color-service);
+    background-color: var(--background-color-service);
+}
+
+
+/* Hero Section */
+.hero {
+    position: relative; /* Essencial para posicionar o overlay e o conteúdo */
+    height: 70vh; /* Altura da seção Hero */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Garante que as imagens não transbordem */
+    text-align: center;
+    color: #fff;
+}
+
+/* Carrossel de Background */
+.hero-carousel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Fica abaixo do overlay e do conteúdo */
+}
+
+.carousel-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem cubra todo o espaço */
+    opacity: 0; /* Imagens inicialmente invisíveis */
+    transition: opacity 1.5s ease-in-out; /* Transição suave entre as imagens */
+}
+
+.carousel-img.active {
+    opacity: 1; /* Imagem ativa fica visível */
+}
+
+/* Overlay para Legibilidade */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Cor preta com 60% de opacidade */
+    z-index: 1; /* Fica acima do carrossel, abaixo do conteúdo */
+}
+
+/* Conteúdo do Hero */
+.hero-content {
+    position: relative; /* Para ficar acima do overlay */
+    z-index: 2; /* O mais alto, garantindo que o texto seja visível */
+    max-width: 800px;
+    padding: 0 2rem;
+}
+
+.hero-content h1 {
+    font-size: 3rem; /* Aumentei um pouco o tamanho para mais impacto */
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+/* Responsividade do Hero */
+@media (max-width: 768px) {
+    .hero {
+        height: 60vh; /* Altura menor para mobile */
+    }
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+    /* Para mobile, pode ser interessante usar apenas uma imagem estática para performance */
+    .hero-carousel {
+        display: none; /* Esconde o carrossel em mobile */
+    }
+    .hero {
+        /* Define uma imagem estática de fallback para mobile */
+        background-image: url('/assets/serraDaLeba.jpg'); /* imagem otimizada para mobile */
+        background-size: cover;
+        background-position: center;
+    }
+}
+
+/* Botão de chamada para ação */
+.btn-cta {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: var(--secondary-color-service);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cta:hover {
+    background: #2980b9;
+}
+
+/* Seção de Serviços */
+.servicos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.servico-item {
+    background: var(--card-background-service);
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    text-align: center;
+    border: 1px solid #e0e0e0; /* Adiciona uma borda sutil */
+}
+
+.servico-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    border: 1px solid var(--primary-color-service);
+}
+
+.icone-servico {
+    font-size: 3rem;
+    color: var(--secondary-color-service);
+    margin-bottom: 1rem;
+    transition: color 0.4s ease;
+}
+
+.servico-item:hover .icone-servico {
+    color: var(--primary-color-service);
+}
+
+.servico-item h2 {
+    color: var(--primary-color-service);
+    margin-bottom: 0.75rem;
+    font-size: 1.6rem; /* Aumenta um pouco o tamanho do título */
+    font-weight: 600;
+}
+
+.servico-item p {
+    font-size: 1rem;
+    line-height: 1.8; /* Melhora a leitura do texto */
+    color: #555; /* Um cinza um pouco mais escuro */
+}
+
+/* Botão nos Cards de Serviço */
+.btn-servico {
+    display: inline-block;
+    background: var(--secondary-color-service);
+    color: #fff;
+    padding: 0.75rem 2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-servico:hover {
+    background: var(--primary-color-service);
+    transform: translateY(-2px);
+}
+
+/* Estilos para card de CTA/Consultoria */
+.cta-extra {
+    background: var(--primary-color-service); /* Um fundo mais escuro para destaque */
+    color: #fff;
+    border: none; /* Remove a borda padrão para contraste */
+}
+
+.cta-extra .icone-servico {
+    color: #fff; /* Ícone branco no fundo escuro */
+}
+
+.cta-extra:hover .icone-servico {
+    color: var(--secondary-color-service); /* Muda para a cor secundária no hover */
+}
+
+.cta-extra h2 {
+    color: #fff; /* Título branco */
+}
+
+.cta-extra p {
+    color: #f0f0f0; /* Parágrafo mais claro */
+}
+
+.btn-cta-extra {
+    background: var(--secondary-color-service); /* Botão com cor de destaque */
+    color: #fff;
+}
+
+.btn-cta-extra:hover {
+    background: #27ae60; /* Outra cor de hover para o botão CTA */
+}
+
+/* Garante que o CTA extra se comporte como um card comum em responsividade */
+@media (max-width: 768px) {
+    .cta-extra {
+        /* Estilos específicos para mobile se necessário, mas o padrão já funciona bem */
+    }
+}
+
+/* Seção de Pagamento e CTA Final */
+.pagamento-cta-container {
+    max-width: 1000px;
+    margin: 4rem auto;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.pagamento-cta-container h2 {
+    font-size: 2rem;
+    color: var(--primary-color-service);
+    margin-bottom: 2rem;
+}
+
+.pagamento-content {
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* Alinha as duas colunas pela altura */
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.pagamento-info, .cta-final {
+    flex: 1;
+    min-width: 300px;
+    background:var(--primary-color-service);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.pagamento-info h3, .cta-final h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.pagamento-info p, .cta-final p {
+    font-size: 1.1rem;
+    color: var(--card-background-service);
+    margin-bottom: 1.5rem;
+}
+
+.condicao-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.condicao-item h4 {
+   
+    font-size: 1.2rem;
+    font-weight: 600;
+    justify-items: center;
+   
+    color: var(--secondary-color-service);
+}
+
+.cta-final .btn-cta {
+    display: inline-block;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .pagamento-content {
+        flex-direction: column;
+    }
+}
+
+/* Responsividade para a nova seção */
+@media (max-width: 768px) {
+    .porque-nos {
+        padding: 3rem 1rem;
+    }
+}
+
+/* Seção de Serviço em Destaque (Landpage) */
+.servico-destaque {
+    background: var(--primary-color-service);
+    color: #fff;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.destaque-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.servico-destaque h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.destaque-descricao {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* Contêiner Flex para alinhar preço e vantagens */
+.destaque-flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Alinha verticalmente */
+    flex-wrap: wrap; /* Permite quebrar a linha em telas pequenas */
+    gap: 3rem; /* Espaço entre os itens */
+    margin-bottom: 2rem;
+}
+
+.destaque-preco, .destaque-vantagens {
+    flex: 1; /* Permite que os itens cresçam para ocupar o espaço */
+    min-width: 280px; /* Garante que os itens não fiquem muito estreitos */
+}
+
+/* O resto do CSS para o preço permanece o mesmo */
+.destaque-preco-container {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.preco-moeda {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+.preco-valor {
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.preco-centavos {
+    font-size: 2.5rem;
+    font-weight: 600;
+    align-self: flex-start;
+}
+
+.preco-info {
+    font-size: 1.2rem;
+    margin-left: 1rem;
+    opacity: 0.8;
+}
+
+/* Estilo para a lista de vantagens */
+.destaque-beneficios {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.destaque-beneficios li {
+    font-size: 1.1rem;
+    position: relative;
+    padding-left: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.destaque-beneficios li::before {
+    content: '✔';
+    color: var(--secondary-color-service);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.servico-destaque .btn-cta {
+    background: var(--secondary-color-service);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.servico-destaque .btn-cta:hover {
+    background: #6A0DAD;
+}
+
+
+/* Responsividade para a nova seção */
+@media (max-width: 768px) {
+    .servico-destaque h2 {
+        font-size: 1.8rem;
+    }
+    
+    .destaque-flex-container {
+        flex-direction: column; /* Em telas menores, os itens voltam a ser empilhados */
+        gap: 2rem;
+    }
+    
+    .destaque-preco, .destaque-vantagens {
+        min-width: unset; /* Remove o tamanho mínimo em mobile */
+        width: 100%;
+    }
+    
+    .preco-valor {
+        font-size: 3.5rem;
+    }
+    .preco-moeda, .preco-centavos {
+        font-size: 1.8rem;
+    }
+    .preco-info {
+        font-size: 1rem;
+    }
+    
+    .destaque-beneficios {
+        text-align: center; /* Centraliza a lista em mobile */
+    }
+    
+    .destaque-beneficios li {
+        text-align: left;
+        display: inline-block; /* Faz com que os itens se ajustem ao texto */
+        margin-right: 1.5rem;
+        margin-left: 1.5rem;
+    }
+}
+
+
+/* Seção de Perguntas Frequentes */
+.faq-container {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.faq-container h2 {
+    color: var(--primary-color-service);
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.faq-item {
+    background: var(--card-background-service);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    overflow: hidden; /* Garante que a transição de altura funcione */
+    transition: all 0.3s ease;
+}
+
+.faq-pergunta {
+    font-size: 1.2rem;
+    padding: 1.2rem 1.5rem;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--primary-color-service);
+    position: relative;
+    font-weight: 600;
+}
+
+.faq-pergunta::after {
+    content: '+';
+    font-size: 2rem;
+    color: var(--secondary-color-service);
+    font-weight: 300;
+    transition: transform 0.3s ease;
+}
+
+.faq-pergunta.active::after {
+    content: '-';
+    transform: rotate(180deg);
+}
+
+.faq-resposta {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 1.5rem;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    text-align: left;
+}
+
+.faq-resposta.show {
+    max-height: 500px; /* Um valor alto para que se expanda totalmente */
+    padding: 1.5rem;
+}
+
+.faq-resposta p {
+    margin: 0;
+    color: var(--text-color-service);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Esconde links para o menu hamburguer, se for implementar */
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .servico-item {
+        padding: 1.5rem;
+    }
+}
